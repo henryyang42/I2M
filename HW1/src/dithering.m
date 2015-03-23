@@ -2,7 +2,8 @@
 clear all; close all; clc;
 
 %% get the images
-lena_img = im2double(imread('../data/lena_gray.bmp'));
+lena_img = im2double(imread('../data/space.png'));
+lena_img = rgb2gray(lena_img);
 thresholding_img = lena_img;
 error_diffusion_img1 = lena_img;
 error_diffusion_img2 = lena_img;

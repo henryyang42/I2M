@@ -17,12 +17,12 @@ for i = 2:w-1
 			% we only care about the missing color
 			if bffilter_img(i, j, k) == 0
 				% get resonable range
-				i1 = max(1, i-1); i2 = min(w, i+1);
-				j1 = max(1, j-1); j2 = min(h, j+1);
-				ori = bfcat_img(i1:i2, j1:j2, k); % bf'ed image
+				i1 = i-1; i2 = i+1;
+				j1 = j-1; j2 = j+1;
+				ori = bfcat_img(i1:i2, j1:j2, k); % filtered image
 				fil = bffilter_img(i1:i2, j1:j2, k); % filter
 				s =  ori .* fil;
-				avg_color = sum(sum(s))/sum(sum(fil));
+				avg_color = sum(sum(s)) / sum(sum(fil));
 				result_img(i, j, k) = avg_color;
 			end
 		end
