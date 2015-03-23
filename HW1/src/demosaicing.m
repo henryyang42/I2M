@@ -51,3 +51,6 @@ title('Catvengers.png');
 subplot(1, 3, 3);
 imshow(result_img);
 title('My Result');
+
+%% save the result
+imwrite(result_img, '../result/P1/result.png');

@@ -40,8 +40,8 @@ end
 %% plot the result
 imshow(cat_img);
 title('Original');
-figure
 
+figure
 imshow(nni_img);
 title('Nearest-neighbor (NN) interpolation');
 
@@ -49,3 +49,6 @@ figure
 imshow(bi_img);
 title('Bilinear interpolation');
 
+%% save the result
+imwrite(nni_img, '../result/P3/nearest-neighbor.png');
+imwrite(bi_img, '../result/P3/bilinear.png');

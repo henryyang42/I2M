@@ -2,8 +2,7 @@
 clear all; close all; clc;
 
 %% get the images
-lena_img = im2double(imread('../data/space.png'));
-lena_img = rgb2gray(lena_img);
+lena_img = im2double(imread('../data/lena_gray.bmp'));
 thresholding_img = lena_img;
 error_diffusion_img1 = lena_img;
 error_diffusion_img2 = lena_img;
@@ -91,3 +90,8 @@ title('Error diffusion with mask #1');
 subplot(1, 3, 3);
 imshow(error_diffusion_img2);
 title('Error diffusion with mask #2');
+
+%% save the result
+imwrite(thresholding_img, '../result/P2/thresholding.png');
+imwrite(error_diffusion_img1, '../result/P2/error_diffusion_mask1.png');
+imwrite(error_diffusion_img2, '../result/P2/error_diffusion_mask2.png');
