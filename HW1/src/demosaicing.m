@@ -22,7 +22,7 @@ for i = 2:w-1
 				ori = bfcat_img(i1:i2, j1:j2, k); % filtered image
 				fil = bffilter_img(i1:i2, j1:j2, k); % filter
 				s =  ori .* fil;
-				avg_color = sum(sum(s)) / sum(sum(fil));
+				avg_color = sum(s(:)) / sum(fil(:));
 				result_img(i, j, k) = avg_color;
 			end
 		end
@@ -30,10 +30,14 @@ for i = 2:w-1
 end
 
 %% compute PSNR
-[peaksnr, snr] = psnr(cat_img, result_img);
+% square mean difference of 2 images
+MSE_mat = (cat_img - result_img) .^ 2;
+% sum all elements in MSE_mat
+MSE = sum(MSE_mat(:)) / (3*w*h);
+MAXi = max(result_img(:));
+PSNR = 10 * log10(MAXi^2 / MSE);
 
-fprintf('\n The Peak-SNR value is %0.4f', peaksnr);
-fprintf('\n The SNR value is %0.4f \n', snr);
+fprintf('The Peak-SNR value is %0.4f\n', PSNR);
 
 %% plot the result
 % make it full screen

@@ -1,5 +1,6 @@
 Introduction to Multimedia Homework 1
 
+The codes are in src/
  - demosaicing.m
  - dithering.m
  - interpolation.m
