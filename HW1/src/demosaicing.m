@@ -34,7 +34,7 @@ end
 MSE_mat = (cat_img - result_img) .^ 2;
 % sum all elements in MSE_mat
 MSE = sum(MSE_mat(:)) / (3*w*h);
-MAXi = max(result_img(:));
+MAXi = 1;
 PSNR = 10 * log10(MAXi^2 / MSE);
 
 fprintf('The Peak-SNR value is %0.4f\n', PSNR);
