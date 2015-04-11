@@ -27,13 +27,13 @@ end
 imshow(bgImage);
 
 %% Draw control points and outline of polygon
-axis equal
-hold on
-if polygonPlotted
-	line( [ctrlPointList(:,1);ctrlPointList(1,1)], [ctrlPointList(:,2);ctrlPointList(1,2)], 'Color', outlineColor, 'LineWidth',4, 'LineSmooth', 'on' );
-end
-if ctrlPointScattered
-	scatter( ctrlPointList(:,1), ctrlPointList(:,2), 25, 'MarkerEdgeColor', ctrlPointColor, 'LineWidth',3 );
-end
+% axis equal
+% hold on
+% if polygonPlotted
+% 	line( [ctrlPointList(:,1);ctrlPointList(1,1)], [ctrlPointList(:,2);ctrlPointList(1,2)], 'Color', outlineColor, 'LineWidth',4, 'LineSmooth', 'on' );
+% end
+% if ctrlPointScattered
+% 	scatter( ctrlPointList(:,1), ctrlPointList(:,2), 25, 'MarkerEdgeColor', ctrlPointColor, 'LineWidth',3 );
+% end
 end
 
