@@ -2,20 +2,11 @@ clear all; close all; clc;
 darkFigure();
 catImage = im2double(imread('github_icon.png'));
 [h, w, ~] = size(catImage);
-imshow(catImage);
+%imshow(catImage);
 load('ctrlPoints.mat');
 
-%% Mouse input
-% xlabel ('Select at most 200 points along the outline', 'FontName', '微軟正黑體', 'FontSize', 14);
-% [ ctrlPointX, ctrlPointY ] = ginput(200);
-% ctrlPointList = [ctrlPointX ctrlPointY];
-% clickedN = size(ctrlPointList,1);
-% 
-% promptStr = sprintf('%d points selected', clickedN);
-% xlabel (promptStr, 'FontName', '微軟正黑體', 'FontSize', 14);
-
 %% Calculate Bㄚˇzier curve (Your efforts here)
-t = linspace(0,1, 20)';
+t = linspace(0,1, 100)';
 bez = @(t,P) ...
   bsxfun(@times,(1-t).^3,P(1,:)) + ...
   bsxfun(@times,3*(1-t).^2.*t,P(2,:)) + ...
@@ -26,12 +17,12 @@ bez = @(t,P) ...
 outlineVertexList = []; 
 
 %Enrich outlineVertexList
-for i = 1:3:sz-3
+for i = 1:3:sz-4
 	outlineVertexList = [ outlineVertexList; bez(t, ctrlPointList(i:i+4, :)) ];
 end
+outlineVertexList = [ outlineVertexList; bez(t, ctrlPointList([77 78 79 1], :)) ];
 
 %% Draw and fill the polygon
-drawAndFillPolygon( catImage, ctrlPointList, outlineVertexList, true, true, true ); %ctrlPointScattered, polygonPlotted, filled
-
-%% Save my precious ctrlPointList
-% save('ctrlPoints.mat', 'ctrlPointList')
+drawAndFillPolygon( catImage, outlineVertexList, outlineVertexList, false, true, true ); %ctrlPointScattered, polygonPlotted, filled
+figure
+plot(outlineVertexList(:,1), outlineVertexList(:,2));
