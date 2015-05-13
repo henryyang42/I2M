@@ -2,12 +2,13 @@ clear all; close all; clc;
 darkFigure();
 catImage = im2double(imread('github_icon.png'));
 [h, w, ~] = size(catImage);
-%imshow(catImage);
-load('ctrlPoints.mat');
 
+load('ctrlPoints.mat');
 %% Calculate B£«£¾zier curve (Your efforts here)
-t = linspace(0,1, 100)';
-bez = @(t,P) ...
+t = linspace(0,1, 50)';
+
+% Anonymous Function for blending
+blending_func = @(t,P) ...
   bsxfun(@times,(1-t).^3,P(1,:)) + ...
   bsxfun(@times,3*(1-t).^2.*t,P(2,:)) + ...
   bsxfun(@times,3*(1-t).^1.*t.^2,P(3,:)) + ...
@@ -17,12 +18,13 @@ bez = @(t,P) ...
 outlineVertexList = []; 
 
 %Enrich outlineVertexList
-for i = 1:3:sz-4
-	outlineVertexList = [ outlineVertexList; bez(t, ctrlPointList(i:i+4, :)) ];
+for i = 1:3:sz-1
+	outlineVertexList = [ outlineVertexList; blending_func(t, ctrlPointList(i:i+3, :)) ];
 end
-outlineVertexList = [ outlineVertexList; bez(t, ctrlPointList([77 78 79 1], :)) ];
 
 %% Draw and fill the polygon
-drawAndFillPolygon( catImage, outlineVertexList, outlineVertexList, false, true, true ); %ctrlPointScattered, polygonPlotted, filled
-figure
-plot(outlineVertexList(:,1), outlineVertexList(:,2));
+drawAndFillPolygon( catImage, ctrlPointList, outlineVertexList, true, true, true );
+
+catImage4 = imresize(catImage, 4, 'nearest');
+figure;
+drawAndFillPolygon( catImage4, ctrlPointList*4, outlineVertexList*4, true, true, true );

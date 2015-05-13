@@ -3,7 +3,6 @@ darkFigure();
 catImage = im2double(imread('github_icon.png'));
 [h, w, ~] = size(catImage);
 imshow(catImage);
-load('ctrlPoints.mat');
 
 %% Mouse input
 xlabel ('Select at most 200 points along the outline', 'FontName', '·L³n¥¿¶ÂÅé', 'FontSize', 14);
@@ -22,4 +21,11 @@ outlineVertexList = ctrlPointList;
 drawAndFillPolygon( catImage, ctrlPointList, outlineVertexList, true, true, true ); %ctrlPointScattered, polygonPlotted, filled
 
 %% Save my precious ctrlPointList
+
+% delete some points if it's not 3n+1
+[sz, ~] = size(ctrlPointList);
+d = mod(sz-1+3, 3);
+for i = 1:d
+	ctrlPointList(randi(sz-d), :) = [];
+end
 save('ctrlPoints.mat', 'ctrlPointList')
