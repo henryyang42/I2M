@@ -1,0 +1,10 @@
+Target = frame17, Reference = frame7
+
+Full Search  N= 8 d= 8 time= 6.186 Total_SAD=7462.212
+2D logarithm N= 8 d= 8 time= 0.876 Total_SAD=6862.608
+Full Search  N= 8 d=16 time=22.480 Total_SAD=4084.655
+2D logarithm N= 8 d=16 time= 1.050 Total_SAD=4341.749
+Full Search  N=16 d= 8 time= 1.580 Total_SAD=9665.153
+2D logarithm N=16 d= 8 time= 0.240 Total_SAD=9059.231
+Full Search  N=16 d=16 time= 5.873 Total_SAD=5107.133
+2D logarithm N=16 d=16 time= 0.298 Total_SAD=5280.863
